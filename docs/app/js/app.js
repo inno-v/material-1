@@ -361,10 +361,15 @@ function(SERVICES, COMPONENTS, DEMOS, PAGES, $location, $rootScope, $http, $wind
 
   function onLocationChange() {
     var path = $location.path();
+    var defaultObject = {
+      name: "Introduction",
+      url:  "/",
+      type: "link"
+    };
 
     if (path == '/') {
-      self.selectSection(null);
-      self.selectPage(null, null);
+      self.selectSection(defaultObject);
+      self.selectPage(defaultObject, defaultObject);
       return;
     }
 

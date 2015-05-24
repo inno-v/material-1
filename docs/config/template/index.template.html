@@ -14,14 +14,12 @@
               md-component-id="left"
               md-is-locked-open="$mdMedia('gt-sm')">
 
-    <md-toolbar class="md-whiteframe-glow-z2">
-      <h1 class="md-toolbar-tools">
-        <a ng-href="#/" layout="row" flex class="docs-logo">
-          <md-icon md-svg-src="md-menu"></md-icon>
-          <div class="docs-logotype">Material Design</div>
-        </a>
-      </h1>
-    </md-toolbar>
+    <header class="nav-header">
+      <a ng-href="#/" class="docs-logo">
+        <img src="img/icons/angular-logo.svg"/>
+        <h1 class="docs-logotype md-heading">Angular Material</h1>
+      </a>
+    </header>
 
     <ul class="skip-links">
       <li class="md-whiteframe-z2">
@@ -52,22 +50,22 @@
   </md-sidenav>
 
   <div layout="column" tabIndex="-1" role="main" flex>
-    <md-toolbar class="md-whiteframe-glow-z2">
+    <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
 
       <div class="md-toolbar-tools docs-toolbar-tools" ng-click="openMenu()" tabIndex="-1" style="padding-left: 8px;">
         <md-button class="md-icon-button" hide-gt-sm aria-label="Toggle Menu">
           <md-icon md-svg-src="img/icons/ic_menu_24px.svg"></md-icon>
         </md-button>
         <div layout="row" flex class="fill-height" style="max-width: 864px; margin-left: 8px;">
-          <h2 class="md-toolbar-item md-breadcrumb">
+          <h2 class="md-toolbar-item md-breadcrumb md-headline">
             <span ng-if="menu.currentPage.name !== menu.currentSection.name">
               <span hide-sm hide-md>{{menu.currentSection.name}}</span>
               <span class="docs-menu-separator-icon" hide-sm hide-md style="transform: translate3d(0, 1px, 0)">
                 <span class="md-visually-hidden">-</span>
-                <img src="img/docArrow.png" alt="" aria-hidden="true">
+                <md-icon md-svg-src="img/icons/ic_chevron_right_24px.svg" style="transform:translateY(-2px)"></md-icon>
               </span>
             </span>
-            <span class="md-breadcrumb-page">{{(menu.currentPage | humanizeDoc) || 'Angular Material' }}</span>
+            <span class="md-breadcrumb-page">{{menu.currentPage | humanizeDoc}}</span>
           </h2>
 
           <span flex></span> <!-- use up the empty space -->
@@ -75,7 +73,7 @@
           <div class="md-toolbar-item docs-tools" layout="column" layout-gt-md="row">
             <md-button class="md-icon-button"
                        aria-label="View Bower Repo on Github"
-                       ng-if="!menu.currentPage || menu.currentSection.name === 'Getting Started'"
+                       ng-if="menu.currentPage.name === 'Introduction' || menu.currentSection.name === 'Getting Started'"
                        target="_blank"
                        ng-href="https://github.com/angular/bower-material">
               <md-tooltip md-autohide>View Bower Source on Github</md-tooltip>
@@ -83,7 +81,7 @@
             </md-button>
             <md-button class="md-icon-button"
                        aria-label="View on NPM"
-                       ng-if="!menu.currentPage || menu.currentSection.name === 'Getting Started'"
+                       ng-if="menu.currentPage.name === 'Introduction' || menu.currentSection.name === 'Getting Started'"
                        target="_blank"
                        ng-href="https://www.npmjs.com/package/angular-material">
               <md-tooltip md-autohide>View on NPM</md-tooltip>
@@ -91,7 +89,7 @@
             </md-button>
             <md-button class="md-icon-button"
                        aria-label="View Source on Github"
-                       ng-if="!menu.currentPage || menu.currentSection.name === 'Getting Started'"
+                       ng-if="menu.currentPage.name === 'Introduction' || menu.currentSection.name === 'Getting Started'"
                        target="_blank"
                        ng-href="{{BUILDCONFIG.repository}}/{{menu.version.current.github}}">
               <md-tooltip md-autohide>View Source on Github</md-tooltip>
