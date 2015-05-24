@@ -360,6 +360,7 @@ code:not(.highlight) {
   background: #3F51B5;
   border-bottom: 1px solid #6674C4;
   flex-shrink: 0;
+  z-index: 2;
 }
 .docs-logotype {
   color: white;
@@ -733,7 +734,9 @@ ul.methods > li:first-child > *:first-child {
 
 .version-picker {
   background: #5262BC !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12)
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  z-index: 3;
+  position: relative;
 }
 .version-picker .menu-toggle-list {
   background: transparent !important;
