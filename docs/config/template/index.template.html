@@ -73,7 +73,7 @@
           <div class="md-toolbar-item docs-tools" layout="column" layout-gt-md="row">
             <md-button class="md-icon-button"
                        aria-label="View Bower Repo on Github"
-                       ng-if="menu.currentPage.name === 'Introduction' || menu.currentSection.name === 'Getting Started'"
+                       ng-if="!currentComponent.docs.length"
                        target="_blank"
                        ng-href="https://github.com/angular/bower-material">
               <md-tooltip md-autohide>View Bower Source on Github</md-tooltip>
@@ -81,7 +81,7 @@
             </md-button>
             <md-button class="md-icon-button"
                        aria-label="View on NPM"
-                       ng-if="menu.currentPage.name === 'Introduction' || menu.currentSection.name === 'Getting Started'"
+                       ng-if="!currentComponent.docs.length"
                        target="_blank"
                        ng-href="https://www.npmjs.com/package/angular-material">
               <md-tooltip md-autohide>View on NPM</md-tooltip>
@@ -89,19 +89,27 @@
             </md-button>
             <md-button class="md-icon-button"
                        aria-label="View Source on Github"
-                       ng-if="menu.currentPage.name === 'Introduction' || menu.currentSection.name === 'Getting Started'"
+                       ng-if="!currentComponent.docs.length"
                        target="_blank"
                        ng-href="{{BUILDCONFIG.repository}}/{{menu.version.current.github}}">
               <md-tooltip md-autohide>View Source on Github</md-tooltip>
               <md-icon md-svg-src="img/icons/github-icon.svg"></md-icon>
             </md-button>
 
-            <md-button ng-repeat="doc in currentComponent.docs"
-              ng-href="#{{doc.url}}"
-              ng-class="{hide: path().indexOf('demo') == -1}"
-              aria-label="{{ doc | humanizeDoc }}">
-              {{doc | humanizeDoc | directiveBrackets}}
-            </md-button>
+            <md-select
+                ng-if="currentComponent.docs.length"
+                ng-class="{ hide: path().indexOf('demo') == -1 }"
+                ng-model="null"
+                placeholder="Related Pages"
+                class="md-body-1">
+              <md-option
+                  ng-repeat="doc in currentComponent.docs"
+                  ng-value="doc.url"
+                  ng-click="redirectToUrl(doc.url)"
+                  aria-label="{{ doc | humanizeDoc }}">
+                {{doc | humanizeDoc | directiveBrackets}}
+              </md-option>
+            </md-select>
 
             <md-button
               class="md-icon-button"

@@ -42,7 +42,7 @@ function(SERVICES, COMPONENTS, DEMOS, PAGES, $routeProvider, $mdThemingProvider)
 
   $mdThemingProvider.theme('default')
       .primaryPalette('indigo')
-      .accentPalette('indigo');
+      .accentPalette('pink');
 
   angular.forEach(PAGES, function(pages, area) {
     angular.forEach(pages, function(page) {
@@ -442,8 +442,9 @@ function(SERVICES, COMPONENTS, DEMOS, PAGES, $location, $rootScope, $http, $wind
   'menu',
   '$location',
   '$rootScope',
+  '$window',
   '$log',
-function($scope, COMPONENTS, BUILDCONFIG, $mdSidenav, $timeout, $mdDialog, menu, $location, $rootScope, $log) {
+function($scope, COMPONENTS, BUILDCONFIG, $mdSidenav, $timeout, $mdDialog, menu, $location, $rootScope, $window, $log) {
   var self = this;
 
   $scope.COMPONENTS = COMPONENTS;
@@ -458,6 +459,10 @@ function($scope, COMPONENTS, BUILDCONFIG, $mdSidenav, $timeout, $mdDialog, menu,
 
   $rootScope.$on('$locationChangeSuccess', openPage);
   $scope.focusMainContent = focusMainContent;
+
+  $rootScope.redirectToUrl = function (url) {
+    $window.location.hash = url;
+  };
 
   // Methods used by menuLink and menuToggle directives
   this.isOpen = isOpen;
